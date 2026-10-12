@@ -3,8 +3,8 @@
 #include "vector2.h"
 
 int main() {
-	//intro();
-	vector2_t vec1;
+	intro();
+	/*vector2_t vec1;
 	vector2_t* vec2 = new vector2_t;
 	std::cout << vec1.to_string() << std::endl
 		<< vec2->to_string() << std::endl;
@@ -19,6 +19,6 @@ int main() {
 		<< vec6->to_string() << std::endl;
 	delete vec2;
 	delete vec4;
-	delete vec6;
+	delete vec6;*/
 	return 0;
 }

@@ -15,10 +15,39 @@ void intro() {
 	fraction_t* frac4 = new fraction_t(2, 10);
 	std::cout << frac3.to_string() << std::endl
 		<< frac4->to_string() << std::endl;
-	fraction_t frac5(1, 2, (char*)"Half");
+	fraction_t frac5(1, 2, new char[] {"Half"});
 	fraction_t* frac6 = new fraction_t(frac5);
 	std::cout << frac5.to_string() << std::endl
 		<< frac6->to_string() << std::endl;
+
+	fraction_t d = std::move(fraction_t::decil());
+	std::cout << d.to_string() << std::endl;
+	std::cout << frac5.to_string() << " + " << d.to_string() << " = "
+		<< (frac5 + d).to_string() << std::endl;
+	std::cout << frac5.to_string() << " - " << d.to_string() << " = "
+		<< (frac5 - d).to_string() << std::endl;
+
+	std::cout << "-----------------" << std::endl;
+	fraction_t f;
+	std::cout << f.to_string() << std::endl;
+	f = d;
+	std::cout << f.to_string() << std::endl;
+	std::cout << "-----------------" << std::endl;
+	f = f + frac5; //Результат додавання, що повертається оператором + 
+				// підлягає руйнуванню f = <--ret--(f+frac5)
+	std::cout << f.to_string() << std::endl;
+
+	f = f * frac5;
+	std::cout << f.to_string() << std::endl;
+
+	f = f / frac5;
+	std::cout << f.to_string() << std::endl;
+
+	std::cout << -f << std::endl;
+	f += 1;
+	std::cout << f << std::endl;
+	f += frac5;
+	std::cout << f << std::endl;
 	delete frac2;
 	delete frac4;
 	delete frac6;
