@@ -47,11 +47,11 @@ vector2_t::vector2_t(vector2_t&& other) noexcept {
 }
 
 
-float vector2_t::get_x() {
+float vector2_t::get_x() const {
 	return x;
 }
 
-float vector2_t::get_y() {
+float vector2_t::get_y() const {
 	return y;
 }
 
@@ -63,7 +63,7 @@ void vector2_t::set_y(float y) {
 	this->y = y;
 }
 
-char* vector2_t::get_name() {
+char* vector2_t::get_name() const {
 	return name;
 }
 
@@ -71,7 +71,7 @@ void vector2_t::set_name(char* name) {
 	this->name = name;
 }
 
-std::string vector2_t::to_string() {
+std::string vector2_t::to_string() const {
 	if(name != NULL) return std::format("{}: ({}; {})", name, x, y);
 	else return std::format("({}; {})", x, y);
 }
@@ -131,4 +131,64 @@ vector2_t& vector2_t::operator =(vector2_t&& other) noexcept {
 	other.name = NULL;
 	std::cout << "Move assigment: take from " << (void*)this->name << std::endl;
 	return *this;
+}
+
+vector2_t operator -(const vector2_t& v) {
+	char* new_name = NULL;
+	if (v.get_name() != NULL) {
+		size_t len = strlen(v.get_name()) + 2;
+		new_name = new char[len];
+		strcpy(new_name, "-");
+		strcpy(new_name + 1, v.get_name());
+	}
+	return vector2_t(-v.get_x(), -v.get_y(), new_name);
+}
+
+std::ostream& operator <<(std::ostream& out, const vector2_t& v) {
+	out << v.to_string();
+	return out;
+}
+
+vector2_t operator *(const vector2_t& v, float n) {
+	char* new_name = NULL;
+	if (v.get_name() != NULL) {
+		size_t len = strlen(v.get_name()) + 1;
+		new_name = new char[len];
+		strcpy(new_name, v.get_name());
+	}
+	return vector2_t(v.get_x()*n, v.get_y() * n, new_name);
+}
+
+vector2_t operator /(const vector2_t& v, float n) {
+	char* new_name = NULL;
+	if (v.get_name() != NULL) {
+		size_t len = strlen(v.get_name()) + 1;
+		new_name = new char[len];
+		strcpy(new_name, v.get_name());
+	}
+	return vector2_t(v.get_x() / n, v.get_y() / n, new_name);
+}
+
+void vector2_t::operator += (const vector2_t& other) {
+	this->x += other.x;
+	this->y += other.y;
+}
+
+void vector2_t::operator += (float n) {
+	this->x += n;
+	this->y += n;
+}
+
+void vector2_t::operator -= (const vector2_t& other) {
+	this->x -= other.x;
+	this->y -= other.y;
+}
+
+void vector2_t::operator -= (float n) {
+	this->x -= n;
+	this->y -= n;
+}
+
+float operator *(const vector2_t& v1, const vector2_t& v2) {
+	return v1.x*v2.x+v1.y*v2.y;
 }

@@ -30,6 +30,16 @@ int main() {
 	std::cout << f.to_string() << std::endl;
 	f = f - *vec4;
 	std::cout << f.to_string() << std::endl;
+	std::cout << -f << std::endl;
+	std::cout << "-----------------" << std::endl;
+	vec5 += *vec4;
+	std::cout << vec5 << std::endl;
+	std::cout << vec5*5 << std::endl;
+	vec5 -= vec3;
+	std::cout << vec5/2 << std::endl;
+	std::cout << "-----------------" << std::endl;
+	std::cout << vec5*vec3 << std::endl;
+
 	delete vec2;
 	delete vec4;
 	delete vec6;
