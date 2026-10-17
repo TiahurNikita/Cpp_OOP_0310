@@ -1,10 +1,10 @@
 ﻿#include "intro.h"
 #include <iostream>
 #include "vector2.h"
-
+#include "basics.h"
 int main() {
 	//intro();
-	vector2_t vec1;
+	/*vector2_t vec1;
 	vector2_t* vec2 = new vector2_t;
 	std::cout << vec1.to_string() << std::endl
 		<< vec2->to_string() << std::endl;
@@ -42,6 +42,7 @@ int main() {
 
 	delete vec2;
 	delete vec4;
-	delete vec6;
+	delete vec6;*/
+	basics();
 	return 0;
 }

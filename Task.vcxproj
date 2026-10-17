@@ -124,14 +124,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basics.cpp" />
     <ClCompile Include="fraction.cpp" />
     <ClCompile Include="intro.cpp" />
+    <ClCompile Include="shop\Electrical.cpp" />
+    <ClCompile Include="shop\Laptop.cpp" />
+    <ClCompile Include="shop\Product.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basics.h" />
     <ClInclude Include="fraction.h" />
     <ClInclude Include="intro.h" />
+    <ClInclude Include="shop\Electrical.h" />
+    <ClInclude Include="shop\Laptop.h" />
+    <ClInclude Include="shop\Product.h" />
     <ClInclude Include="vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
