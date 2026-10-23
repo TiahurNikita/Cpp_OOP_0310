@@ -2,6 +2,7 @@
 #include <iostream>
 #include "vector2.h"
 #include "basics.h"
+#include "autos_basic.h"
 int main() {
 	//intro();
 	/*vector2_t vec1;
@@ -43,6 +44,7 @@ int main() {
 	delete vec2;
 	delete vec4;
 	delete vec6;*/
-	basics();
+	//basics();
+	autos_basic();
 	return 0;
 }

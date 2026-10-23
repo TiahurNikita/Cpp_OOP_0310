@@ -124,21 +124,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="autos_basic.cpp" />
     <ClCompile Include="basics.cpp" />
     <ClCompile Include="fraction.cpp" />
     <ClCompile Include="intro.cpp" />
+    <ClCompile Include="rental\Hypercar.cpp" />
+    <ClCompile Include="rental\Minivan.cpp" />
+    <ClCompile Include="rental\RentalCar.cpp" />
+    <ClCompile Include="rental\Sedan.cpp" />
+    <ClCompile Include="rental\Special.cpp" />
+    <ClCompile Include="rental\Standard.cpp" />
+    <ClCompile Include="rental\Suv.cpp" />
     <ClCompile Include="shop\Electrical.cpp" />
     <ClCompile Include="shop\Laptop.cpp" />
+    <ClCompile Include="shop\Monitor.cpp" />
     <ClCompile Include="shop\Product.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="autos_basic.h" />
     <ClInclude Include="basics.h" />
     <ClInclude Include="fraction.h" />
     <ClInclude Include="intro.h" />
+    <ClInclude Include="rental\Hypercar.h" />
+    <ClInclude Include="rental\Minivan.h" />
+    <ClInclude Include="rental\RentalCar.h" />
+    <ClInclude Include="rental\Sedan.h" />
+    <ClInclude Include="rental\Special.h" />
+    <ClInclude Include="rental\Standard.h" />
+    <ClInclude Include="rental\Suv.h" />
     <ClInclude Include="shop\Electrical.h" />
     <ClInclude Include="shop\Laptop.h" />
+    <ClInclude Include="shop\Monitor.h" />
+    <ClInclude Include="shop\Periphery.h" />
     <ClInclude Include="shop\Product.h" />
     <ClInclude Include="vector2.h" />
   </ItemGroup>

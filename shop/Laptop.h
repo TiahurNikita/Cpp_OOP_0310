@@ -1,11 +1,11 @@
 #pragma once
 #include "Electrical.h"
 
-class Laptop : public Electrical { // ":" - спадкуванн€
+class Laptop : public Electrical {
 private:
 	std::string hardware;
 public:
 	std::string getHardware() const;
-	void setHardware(std::string);
-	std::string toString() const;
+	Laptop* setHardware(std::string);
+	std::string toString() const override;  // override - переозначенн€ батьк≥вського методу
 };

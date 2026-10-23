@@ -1,15 +1,30 @@
 #include <iostream>
 #include "basics.h"
-#include "shop/Laptop.h"
 
 void basics() {
-	std::cout << "OOP Basics!" << std::endl;
-	Laptop* acer = new Laptop();
-	acer->setName("Acer Nitro");
-	acer->setPrice(64099);
-	acer->setPower(90);
-	acer->setHardware("NVIDIA RTX 3050 4GB VRAM, Intel Core i5, 16 GB RAM DDR5, SSD 1TB");
-	std::cout << acer->toString() << std::endl;
+	std::cout << "OOP Basics" << std::endl;
+	// Поліморфізм - поєднання до єдиного масиву (колекції)
+	// об'єктів різного типу. Формально, об'єкти мають один
+	// тип (базового класу), при цьому фактично є об'єктами
+	// похідних (дочірніх) типів
+
+	Product* stock[2];
+
+	stock[0] = (new Laptop())
+		->setHardware("Intel Core 5, RAM 16GB, SSD 512GB")
+		->setPower(90)
+		->setName("Acer Nitro")
+		->setPrice(60499);
+
+	stock[1] = (new Monitor())
+		->setDiagonal(32)
+		->setPower(120)
+		->setName("Dell Vision")
+		->setPrice(7950);
+
+	for (auto product : stock) {
+		std::cout << product->toString() << std::endl;
+	}
 }
 
 /*
@@ -66,4 +81,19 @@ void basics() {
 популярних сайтів - формуи, оренда житла/автівок тощо)
 Виписати основні стуності, провести абстрагування - побудувати
 ієрархію класів з абстракціями. Основний результат - діаграма класів.
+
+
+Віртуальні методи
+Різниця між віртуальними та невіртуальними методами виникає коли тип
+даних посилання на об'єкт та тип самого об'єкта не є однаковими.
+(посилання через батьківський тип)
+Electrical* stock = new Laptop()
+тип посилання (stock) - Electrical*
+тип об'єкту - Laptop*
+Віртуальні методи викликаються у об'єкта
+  stock->v() -- Laptop::v
+Невіртуальні методи - за типом даних
+  stock->nv() -- Electrical::nv
+Невіртуальні методи створюються за замовчанням,
+для створення віртуальних необхідно додати оператор "virtual"
 */

@@ -1,10 +1,11 @@
 #pragma once
 #include "Product.h"
 
-class Electrical : public Product { // ":" - спадкування
-private:
-	double power;
+class Electrical : public Product {  // ":" означає спадкування
+private:                             // public - збереження доступності методів
+	double      power;
 public:
-	double getPower() const;
-	void setPower(double);
+	double      getPower() const;
+	Electrical* setPower(double);
+
 };
