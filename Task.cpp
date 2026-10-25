@@ -3,6 +3,7 @@
 #include "vector2.h"
 #include "basics.h"
 #include "autos_basic.h"
+#include "data_structures.h"
 int main() {
 	//intro();
 	/*vector2_t vec1;
@@ -45,6 +46,7 @@ int main() {
 	delete vec4;
 	delete vec6;*/
 	//basics();
-	autos_basic();
+	//autos_basic();
+	data_structures();
 	return 0;
 }

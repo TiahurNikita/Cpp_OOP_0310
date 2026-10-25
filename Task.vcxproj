@@ -126,6 +126,8 @@
   <ItemGroup>
     <ClCompile Include="autos_basic.cpp" />
     <ClCompile Include="basics.cpp" />
+    <ClCompile Include="data_structures.cpp" />
+    <ClCompile Include="data_structures\linked_list.cpp" />
     <ClCompile Include="fraction.cpp" />
     <ClCompile Include="intro.cpp" />
     <ClCompile Include="rental\Hypercar.cpp" />
@@ -145,6 +147,8 @@
   <ItemGroup>
     <ClInclude Include="autos_basic.h" />
     <ClInclude Include="basics.h" />
+    <ClInclude Include="data_structures.h" />
+    <ClInclude Include="data_structures\linked_list.h" />
     <ClInclude Include="fraction.h" />
     <ClInclude Include="intro.h" />
     <ClInclude Include="rental\Hypercar.h" />
