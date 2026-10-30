@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+/*#define _CRT_SECURE_NO_WARNINGS
 #include "vector2.h"
 #include <iostream>
 #include <format>
@@ -191,4 +191,4 @@ void vector2_t::operator -= (float n) {
 
 float operator *(const vector2_t& v1, const vector2_t& v2) {
 	return v1.x*v2.x+v1.y*v2.y;
-}
+}*/

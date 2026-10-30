@@ -143,6 +143,7 @@
     <ClCompile Include="shop\Product.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="vector2.cpp" />
+    <ClCompile Include="vector_task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="autos_basic.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="shop\Periphery.h" />
     <ClInclude Include="shop\Product.h" />
     <ClInclude Include="vector2.h" />
+    <ClInclude Include="vector_task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
