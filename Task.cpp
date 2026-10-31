@@ -49,7 +49,7 @@ int main() {
 	delete vec6;*/
 	//basics();
 	//autos_basic();
-	//data_structures();
-	vector_task();
+	data_structures();
+	//vector_task();
 	return 0;
 }

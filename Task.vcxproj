@@ -149,7 +149,11 @@
     <ClInclude Include="autos_basic.h" />
     <ClInclude Include="basics.h" />
     <ClInclude Include="data_structures.h" />
+    <ClInclude Include="data_structures\array.h" />
     <ClInclude Include="data_structures\linked_list.h" />
+    <ClInclude Include="data_structures\list_node.h" />
+    <ClInclude Include="data_structures\queue.h" />
+    <ClInclude Include="data_structures\queue_list.h" />
     <ClInclude Include="fraction.h" />
     <ClInclude Include="intro.h" />
     <ClInclude Include="rental\Hypercar.h" />

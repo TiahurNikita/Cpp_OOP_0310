@@ -1,5 +1,8 @@
 #include "data_structures.h"
 #include "data_structures/linked_list.h"
+#include "data_structures/queue_list.h"
+#include "data_structures/array.h"
+#include "data_structures/queue.h"
 #include <iostream>
 
 
@@ -26,27 +29,134 @@ struct fraction {
 		numerator = n;
 	}
 };
-void data_structures() {
+
+//Task 1
+void data_structures_q() {
+	QueueList<double>* doubleList = new QueueList<double>();
+	doubleList->add(1.2);
+	doubleList->add(23.5);
+	doubleList->add(-123.6);
+	doubleList->print();
+	std::cout << "first: " << doubleList->peek() << std::endl;
+	std::cout << "popped: " << doubleList->pop() << std::endl;
+	doubleList->print();
+	doubleList->add(3.6);
+	doubleList->print();
+	std::cout << "popped: " << doubleList->pop() << std::endl;
+	doubleList->print();
+	std::cout << "Clear: " << std::endl;
+	doubleList->clear();
+	doubleList->print();
+	delete doubleList;
+}
+//Task 2
+void data_structures_l() {
 	std::cout << "Data structures" << std::endl;
-	LinkedList<int>* intList = new LinkedList<int>();
-	intList->add(10);
-	intList->add(20);
-	intList->add(30);
-	intList->print();
-	intList->insertBefore(5, 0);
-	intList->print();
-	intList->insertBefore(15, 2);
-	intList->print();
-	std::cout << "removed: " << intList->remove(0) << std::endl;
-	intList->print();
-	std::cout << "removed: " << intList->remove(3) << std::endl;
-	intList->print();
-	std::cout << "removed: " << intList->remove(0) << std::endl;
-	intList->print();
-	std::cout << "removed: " << intList->remove(0) << std::endl;
-	intList->print();
-	std::cout << "removed: " << intList->remove(0) << std::endl;
-	intList->print();
+	LinkedList<int>* intList1 = new LinkedList<int>();
+	intList1->add(10);
+	intList1->add(20);
+	intList1->add(30);
+	intList1->insertBefore(5, 0);
+	intList1->insertBefore(15, 2);
+	intList1->print();
+	std::cout << "removed: " << intList1->remove(2) << std::endl;
+	intList1->print();
+	std::cout << "removed: " << intList1->remove(2) << std::endl;
+	intList1->print();
+	std::cout << "removed: " << intList1->remove(1) << std::endl;
+	intList1->print();
+	std::cout << "removed: " << intList1->remove(0) << std::endl;
+	intList1->print();
+	std::cout << "removed: " << intList1->remove(0) << std::endl;
+	intList1->print();
+	LinkedList<int>* intList2 = new LinkedList<int>();
+	intList2->add(45);
+	intList2->add(210);
+	intList2->add(20);
+	intList2->add(6);
+	intList2->add(15);
+	intList2->print();
+	ListNode<int>* cpy = intList2->copy();
+	while (cpy) {
+		std::cout << cpy->data << " ";
+		cpy = cpy->next;
+	}
+	std::cout << std::endl;
+	ListNode<int>* summ = *intList1 + *intList2;
+	while (summ) {
+		std::cout << summ->data << " ";
+		summ = summ->next;
+	}
+	std::cout << std::endl;
+	ListNode<int>* mult = *intList1 * *intList2;
+	while (mult) {
+		std::cout << mult->data << " ";
+		mult = mult->next;
+	}
+	std::cout << std::endl;
+	
+	delete intList2;
+	delete intList1;
+}
+//Task 3
+void data_structures_a() {
+	Array<int>* arr1 = new Array<int>();
+	arr1->SetSize(5, 5);
+	if (arr1->IsEmpty()) std::cout << "Empty" << std::endl;
+	std::cout << "Used size: " << arr1->GetSize() << std::endl;
+	arr1->Add(10);
+	arr1->Add(20);
+	arr1->Add(30);
+	arr1->Add(40);
+	arr1->Add(50);
+	arr1->print();
+	std::cout << "Upper bound: " << arr1->GetUpperBound() << std::endl;
+	arr1->Add(60);
+	arr1->print();
+	std::cout << "Used size: " << arr1->GetSize() << std::endl;
+	arr1->SetAt(2, 5);
+	arr1->SetAt(7, 5);
+	arr1->print();
+	std::cout << "Element with index 4 = " << arr1->GetAt(4) << std::endl;
+	arr1->FreeExtra();
+	arr1->print();
+
+	Array<int>* arr2 = new Array<int>();
+	arr2->SetSize(2, 1);
+	arr2->Add(100);
+	arr2->Add(200);
+	arr1->Append(*arr2);
+	arr1->print();
+
+	Array<int>* arr3 = new Array<int>();
+	*arr3 = *arr1;
+
+	ListNode<int>* node = arr3->GetData();
+	while (node) {
+		std::cout << node->data << " ";
+		node = node->next;
+	}
+	std::cout << std::endl;
+
+	arr1->RemoveAll();
+	arr1->print();
+	arr2->RemoveAll();
+	arr3->RemoveAll();
+	delete arr1;
+	delete arr2;
+	delete arr3;
+}
+
+//CW
+void data_structures() {
+	std::cout << "Queue demo" << std::endl;
+	Queue<int> queue;
+	queue.enqueue(1);
+	queue.enqueue(2);
+	queue.enqueue(3);
+	std::cout << queue.dequeue() << std::endl;
+	std::cout << queue.dequeue() << std::endl;
+	std::cout << queue.dequeue() << std::endl;
 }
 
 void data_structures_t() {
@@ -64,7 +174,6 @@ void data_structures_t() {
 	f2.print();	std::cout<<std::endl;
 	f3.print();	std::cout<<std::endl;
 }
-
 /*
 Структури даних та шаблонне програмування
 1.	Структури даних - типові способи організації даних,

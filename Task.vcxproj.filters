@@ -137,5 +137,17 @@
     <ClInclude Include="vector_task.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="data_structures\queue_list.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="data_structures\list_node.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="data_structures\array.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="data_structures\queue.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
