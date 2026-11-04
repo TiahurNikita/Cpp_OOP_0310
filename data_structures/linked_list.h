@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
+#include <format>
 #include "list_node.h"
 
 template<typename T>
@@ -14,6 +16,7 @@ public:
 	T remove(size_t index);
 	size_t getSize() const { return size; }
 	ListNode<T>* getFirst() const { return first; }
+	ListNode<T>* getLast() const { return last; }
 	bool is_in(T data) const;
 
 	ListNode<T>* copy() const;
@@ -62,6 +65,9 @@ void LinkedList<T>::insertBefore(T data, size_t index) {
 		}
 		else {
 			//помилка - index out of range
+			throw std::range_error(
+				std::format("LinkedList<T>::insertBefore: Max list index {} but got {}", size - 1, index)
+			);
 		}
 	}
 }
@@ -118,8 +124,9 @@ T LinkedList<T>::remove(size_t index) {
 		}
 	}
 	else {
-		//error
-		return T(0);
+		throw std::range_error(
+			std::format("LinkedList<T>::remove: Unable to remove element. Max list index {} but got {}", size - 1, index)
+		);
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "data_structures/array.h"
 #include "data_structures/queue.h"
 #include <iostream>
+#include <stdexcept>
 
 
 template<typename T>						// Шаблонними можуть бути функції та типи (класи, структури)
@@ -56,20 +57,30 @@ void data_structures_l() {
 	intList1->add(10);
 	intList1->add(20);
 	intList1->add(30);
-	intList1->insertBefore(5, 0);
-	intList1->insertBefore(15, 2);
-	intList1->print();
-	std::cout << "removed: " << intList1->remove(2) << std::endl;
-	intList1->print();
-	std::cout << "removed: " << intList1->remove(2) << std::endl;
-	intList1->print();
-	std::cout << "removed: " << intList1->remove(1) << std::endl;
-	intList1->print();
-	std::cout << "removed: " << intList1->remove(0) << std::endl;
-	intList1->print();
-	std::cout << "removed: " << intList1->remove(0) << std::endl;
-	intList1->print();
-	LinkedList<int>* intList2 = new LinkedList<int>();
+	try{
+		intList1->insertBefore(5, 0);
+		intList1->print();
+		intList1->insertBefore(15, 5);
+		intList1->print();
+	}
+	catch(const std::range_error& ex){
+		std::cerr << "Exception: " << ex.what() << std::endl;
+	}
+	try{
+		std::cout << "removed:\n" << intList1->remove(2) << std::endl;
+		intList1->print();
+		std::cout << "removed:\n" << intList1->remove(2) << std::endl;
+		intList1->print();
+		std::cout << "removed:\n" << intList1->remove(1) << std::endl;
+		intList1->print();
+		std::cout << "removed:\n" << intList1->remove(5) << std::endl;
+		intList1->print();
+		std::cout << "removed:\n" << intList1->remove(0) << std::endl;
+		intList1->print();
+	}catch (const std::range_error& ex) {
+		std::cerr << "Exception: " << ex.what() << std::endl;
+	}
+	/*LinkedList<int>* intList2 = new LinkedList<int>();
 	intList2->add(45);
 	intList2->add(210);
 	intList2->add(20);
@@ -96,7 +107,7 @@ void data_structures_l() {
 	std::cout << std::endl;
 	
 	delete intList2;
-	delete intList1;
+	delete intList1;*/
 }
 //Task 3
 void data_structures_a() {
@@ -154,9 +165,19 @@ void data_structures() {
 	queue.enqueue(1);
 	queue.enqueue(2);
 	queue.enqueue(3);
-	std::cout << queue.dequeue() << std::endl;
-	std::cout << queue.dequeue() << std::endl;
-	std::cout << queue.dequeue() << std::endl;
+	//std::cout << queue.dequeue() << std::endl;
+	//std::cout << queue.dequeue() << std::endl;
+	//std::cout << queue.dequeue() << std::endl;
+	try {
+		while (true) {
+			std::cout << queue.dequeue() << std::endl;
+		}
+	}
+	catch (...) {}
+	queue.enqueue(1);
+	queue.enqueue(2);
+	queue.enqueue(3);
+	while(!queue.isEmpty()) std::cout << queue.dequeue() << std::endl;
 }
 
 void data_structures_t() {
@@ -265,4 +286,22 @@ void data_structures_t() {
 Узагальнене програмуваня дозволяє зробити структури даних, що 
 можуть працювати з різними типами внутрішніх даних: описати 
 шаблон, який буде реалізовуватись для конкретних типів у програмі.
+
+https://en.cppreference.com/cpp/error/exception
+Поради:
+- створювати вийнятки тільки для задач, коли неможлива подальша робота коду
+  (не використовувати для організації "далеких" переходів в нормальній роботі)
+- використовувати конкретні (типізовані) вийнятки, не вживати загальний.
+  Якщо немає потрібного, то краще створити свій (новий)
+- блоки try поділяти за логікою роботи: погано занадто обтяжувати блок, вміщуючи
+  в нього велику кількість коду, так і, навпаки, оточувати кожну інструкцію
+  власним блоком try-catch. Наприклад окремий блок для задач зчитування даних
+  та формування з них переліку. Окремий блок для роботи з цим переліком.
+- формувати детальні повідомлення про помилки,які дозволяютьо
+  = знайти точку помилки
+  = дізнатись параметри, що призвели до помилки
+  = дізнатись детальну причину помилки
+  поганий приклад повідомлення: parse error
+  гарний приклад: 
+  Number parse error: unprocessable char '*' in position 2: '1*2'
 */

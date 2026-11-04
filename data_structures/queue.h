@@ -14,12 +14,16 @@ public:
 			return queue->remove(0);
 		}
 		else {
-			return T(0);
+			throw std::length_error("Queue<T>::dequeue(): Dequeue requested for empty queue");
 		}
 	}
 	
 	size_t getLength() {
 		return queue->getSize();
+	}
+
+	bool isEmpty() {
+		return getLength() == 0;
 	}
 
 	Queue (){
@@ -30,8 +34,8 @@ public:
 		//TODO: реалізувати
 	}
 	Queue(Queue<T>&& other) {
-		this->queue = other->queue;
-		other->queue = NULL;
+		this->queue = other.queue;
+		other.queue = NULL;
 	}
 	~Queue() {
 		if(queue) delete queue;

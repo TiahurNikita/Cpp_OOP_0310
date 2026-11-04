@@ -5,6 +5,7 @@
 #include "autos_basic.h"
 #include "data_structures.h"
 #include "vector_task.h"
+#include "data_structures/stack_hw.h"
 
 int main() {
 	//intro();
@@ -49,7 +50,8 @@ int main() {
 	delete vec6;*/
 	//basics();
 	//autos_basic();
-	data_structures();
 	//vector_task();
+	// data_structures();
+	stack_hw();
 	return 0;
 }
