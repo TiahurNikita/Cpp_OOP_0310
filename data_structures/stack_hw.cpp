@@ -61,3 +61,45 @@ void stack_hw() {
 	}
 	else std::cout << "No errors" << std::endl;
 }
+
+void stack_hw_e() {
+	Stack<int> s;
+	std::cout << "--- pop() empty stack error ---" << std::endl;
+	try {
+		s.pop();
+	}
+	catch (const std::length_error& ex) {
+		std::cout << "Exception: " << ex.what() << std::endl;
+	}
+	catch (...) {
+		std::cout << "Generic exception" << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "--- pop() error ---" << std::endl;
+	try {
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		std::cout << s.pop() << std::endl;
+		std::cout << s.pop() << std::endl;
+		std::cout << s.pop() << std::endl;
+		std::cout << s.pop() << std::endl;
+	}
+	catch (const std::length_error& ex) {
+		std::cout << "Exception: " << ex.what() << std::endl;
+	}
+	catch (...) {
+		std::cout << "Generic exception" << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "--- top() error ---" << std::endl;
+	try {
+		s.top();
+	}
+	catch (const std::length_error& ex) {
+		std::cout << "Exception: " << ex.what() << std::endl;
+	}
+	catch (...) {
+		std::cout << "Generic exception" << std::endl;
+	}
+}

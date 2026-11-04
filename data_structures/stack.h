@@ -24,7 +24,7 @@ public:
 			return stack->getLast()->data;
 		}
 		else {
-			throw std::length_error("Stack<T>::top(): Top requested for empty stack");
+			throw std::length_error("Stack<T>::top(): Top element requested for empty stack");
 		}
 	}
 
