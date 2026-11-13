@@ -9,22 +9,30 @@ void stack_hw() {
 	s1.push(10);
 	s1.push(20);
 	s1.push(30);
-	std::cout << "s1: " << s1.pop() << std::endl;
+	s1.pop();
+	std::cout << "s1: " << std::endl;
+	s1.print();
+
 	Stack<int> s2 = s1;
-	std::cout << "s2: " << s2.top() << std::endl;
+	std::cout << "s2: " << std::endl; 
+	s2.print();
+
 	Stack<int> s3;
 	s3.push(0);
 	s1.push(40);
 	s3 = s1;
 	s1.push(50);
-	std::cout << "s3: " << s3.top() << std::endl;
+	std::cout << "s3: " << std::endl;
+	s3.print();
 
 	Stack<int> s4 = std::move(s2);
-	std::cout << "s4: " << s4.top() << std::endl;
+	std::cout << "s4: " << std::endl;
+	s4.print();
 
 	Stack<int> s5;
 	s5 = std::move(s3);
-	std::cout << "s5: " << s5.top() << std::endl;
+	std::cout << "s5: " << std::endl;
+	s5.print();
 }
 
 void stack_hw_ğ() {

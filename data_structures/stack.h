@@ -19,7 +19,7 @@ public:
 		}
 	}
 
-	T top() {
+	T top() const {
 		if (!isEmpty()) {
 			return stack->getLast()->data;
 		}
@@ -28,12 +28,25 @@ public:
 		}
 	}
 
-	size_t getLength() {
+	size_t getLength() const {
 		return stack->getSize();
 	}
 
-	bool isEmpty() {
+	bool isEmpty() const{
 		return getLength() == 0;
+	}
+
+	void print() const {
+		if (isEmpty()) {
+			std::cout << "Empty stack" << std::endl;
+			return;
+		}
+		ListNode<T>* node = stack->getLast();
+		while (node) {
+			std::cout << node->data << " ";
+			node = node->prev;
+		}
+		std::cout << std::endl;
 	}
 
 	Stack() {
@@ -71,4 +84,5 @@ public:
 	~Stack() {
 		if (stack) delete stack;
 	}
+
 };
