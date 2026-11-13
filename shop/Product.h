@@ -16,4 +16,9 @@ public:
 	Product* setPrice(double);
 
 	virtual std::string toString() const = 0;
+
+	Product() {}
+	Product(const Product& other) : name{ other.name }, price { other.price } {}
+	Product(Product&& other) noexcept : name{ other.name }, price{ other.price } {}
+	~Product() {}
 };

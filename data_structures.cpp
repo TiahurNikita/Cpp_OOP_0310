@@ -31,6 +31,35 @@ struct fraction {
 	}
 };
 
+
+void data_structures() {
+	LinkedList<int>* intList = new LinkedList<int>();
+	intList->add(10);
+	intList->add(20);
+	intList->add(30);
+	intList->print();
+
+	LinkedList<int>* intList2 = intList->clone();
+	intList2->print();
+	intList->insertBefore(51, 0);
+	intList2->insertBefore(52, 0);
+	std::cout << "list1" << std::endl;
+	intList->print();
+	std::cout << "list2" << std::endl;
+	intList2->print();
+	std::cout << "------------" << std::endl;
+	Queue<int> queue;
+	queue.enqueue(1);
+	queue.enqueue(2);
+	queue.enqueue(3);
+	Queue<int> queue2 = std::move(queue);
+	while (!queue2.isEmpty()) {
+		std::cout << queue2.dequeue() << std::endl;
+	}
+}
+
+
+
 //Task 1
 void data_structures_q() {
 	QueueList<double>* doubleList = new QueueList<double>();
@@ -159,7 +188,7 @@ void data_structures_a() {
 }
 
 //CW
-void data_structures() {
+void data_structures_4() {
 	std::cout << "Queue demo" << std::endl;
 	Queue<int> queue;
 	queue.enqueue(1);

@@ -8,4 +8,9 @@ public:
 	double      getPower() const;
 	Electrical* setPower(double);
 
+	Electrical() {}
+	Electrical(const Electrical& other) : power{ other.power } {}
+	Electrical(Electrical&& other) noexcept : power{ other.power } {}
+	~Electrical() {}
+
 };

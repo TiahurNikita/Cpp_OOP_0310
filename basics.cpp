@@ -3,6 +3,39 @@
 
 void basics() {
 	std::cout << "OOP Basics" << std::endl;
+	//LinkedList<Product*> stock;						  // Перелік покажчиків (stock - статичний об'єкт LinkedList, який вже є)
+	// + автоматично знищиться після виконання ф-ції basics
+	// - весь об'єкт stock розмішується у стеку
+	//LinkedList<Product*>* stock;					  // Покажчик на перелік покажчиків (stock - покажчик на об'єкт LinkedList, якого ще нема)
+	// + економія стекової пам'яті, у стеку тільки адруса
+	// - необхідно створити об'єкт: stock = new LinkedList<Product*>();
+	//	 та не забути видалити (delete stock) оскільки автоматично звільниться
+	//	 тілки адреса, а не об'єкт за нею
+	// 
+	//LinkedList<std::unique_ptr<Product>> stock;		  // Перелік розумних покажчиків
+	// невдалий варіант - як збільшення пам'яті, так і непотрібні розумні покажчики
+
+	std::unique_ptr<LinkedList<Product*>> stock =
+		std::make_unique<LinkedList<Product*>>();	  // Розумний покажчик на перелік
+	// оптимальний варіант - покажчик всередині розумного покажчика та
+	// автоматичне видалення після роботи
+	//LinkedList<Product*>* stock = new LinkedList<Product*>();
+	stock->add((new Laptop())
+		->setHardware("Intel Core 5, RAM 16GB, SSD 512GB")
+		->setPower(90)
+		->setName("Acer Nitro")
+		->setPrice(60499));
+
+	stock->add((new Monitor())
+		->setDiagonal(32)
+		->setPower(120)
+		->setName("Dell Vision")
+		->setPrice(7950));
+	stock->print();
+}
+
+/*void basics_2() {
+	std::cout << "OOP Basics" << std::endl;
 	// Поліморфізм - поєднання до єдиного масиву (колекції)
 	// об'єктів різного типу. Формально, об'єкти мають один
 	// тип (базового класу), при цьому фактично є об'єктами
@@ -21,6 +54,25 @@ void basics() {
 		->setPower(120)
 		->setName("Dell Vision")
 		->setPrice(7950);
+
+	std::unique_ptr<Product> ptr = std::make_unique<Laptop>(
+		(new Laptop())
+		->setHardware("Intel Core 5, RAM 16GB, SSD 512GB")
+		->setPower(90)
+		->setName("Acer Nitro")
+		->setPrice(60499)
+	);
+	//std::unique_ptr<Product> ptr2 = ptr; - не можна
+	std::unique_ptr<Product> ptr2 = std::move(ptr);
+
+	std::shared_ptr<Product> s1 = std::make_shared<Monitor>(
+		(new Monitor())
+		->setDiagonal(32)
+		->setPower(120)
+		->setName("Dell Vision")
+		->setPrice(7950)
+	);
+	std::shared_ptr<Product> s2 = s1;
 
 	for (auto product : stock) {
 		std::cout << product->toString() << std::endl;
@@ -97,3 +149,23 @@ Electrical* stock = new Laptop()
 Невіртуальні методи створюються за замовчанням,
 для створення віртуальних необхідно додати оператор "virtual"
 */
+/*
+"Розумні покажчики" (Smart Pointers_ - спеціальні покажчики, які дозволяють 
+автоматично контролювати правильне знищення об'єктів. Їх можна розуміти, як
+"оболонки" над об'єктами, які не змінюють правила роботи з ними, але додають
+спостереження за їх використанням: якщо об'єкт перестає використовуватись, то
+він знищується.
+unique_ptr — унікальний покажчик, мається на увазі, що неможна створити другий 
+покажчик на вже створений об'єкт. Якщо потрібно перенести посилання, 
+то слід скористатись std::move. Створюється командою std::make_unique
+
+shared_ptr — розподілений покажчик, дозволяє створювати кілька посилань 
+на один об'єкт. Створюється командою std::make_shared
+
+Ідея роботи в тому, що розумні покажчики насправді не є покажчиками, 
+а є звичайними змінними, що в середині зберігають покажчик. Змінні, що 
+виходять з області видності, видаляються програмою автоматично, тоді як 
+виділена пам'ять (для покажчиків) закріплюється за всією програмою і не 
+керується при виході змінних з областей видності.
+
+*/ 

@@ -24,11 +24,92 @@ public:
 	ListNode<T>* operator *(const LinkedList<T>& other) const;
 
 	void print() const;
+
+	void clear() {
+		ListNode<T>* node = this->first;
+		while (node) {
+			first = first->next;
+			delete node;
+			node = first;
+		}
+		first = last = NULL;
+		size = 0;
+	}
+
+	LinkedList<T>* clone() const;
+	
+	LinkedList() : first{ NULL }, last{ NULL }, size{ 0 } {
+		//Default constructor
+	}
+
+	LinkedList(const LinkedList& other) { // Copy
+		ListNode<T>* node = other.first;
+		while (node) {
+			this->add(node->data);
+			node = node->next;
+		}
+	}
+
+	LinkedList(LinkedList&& other) noexcept: 
+		first{ other.first }, last{ other.last }, size{ other.size } { // Move
+		other.first = other.last = NULL;
+		other.size = 0;
+	}
+
+	LinkedList<T>& operator =(const LinkedList<T>& other) {
+		if (this == &other) return *this;
+		this->clear();
+		ListNode<T>* node = other.first;
+		while (node) {
+			this->add(node->data);
+			node = node->next;
+		}
+		return *this;
+	}
+
+	LinkedList<T>& operator =(LinkedList<T>&& other) noexcept {
+		if (this == &other) return *this;
+		this->clear();
+		this->first = other.first;
+		this->last = other.last;
+		this->size = other.size;
+
+		other.first = other.last =  NULL;
+		other.size = 0;
+		return *this;
+	}
+
+	~LinkedList() { // Destructor
+		while (first) {
+			last = first;
+			first = first->next;
+			delete last;
+		}
+	}
+	//Реалізувати структуру даних Стек з дотриманням "правила шести"
 };
 
 
 
 //#include "linked_list.cpp"
+
+template<typename T>
+LinkedList<T>* LinkedList<T>::clone() const {
+	/*
+	Q1
+	 *list1
+		*first1 --> [p|d|n]<-->[p|d|n]...[ ] <-- last1
+	clone			   |		  |		  |
+		*first2 --> [p|d|n]<-->[p|d|n]...[ ] <-- last2
+	*/
+	LinkedList<T>* res = new LinkedList<T>;
+	ListNode<T>* node = this->first;
+	while (node) {
+		res->add(node->data);
+		node = node->next;
+	}
+	return res;
+}
 
 template<typename T>
 void LinkedList<T>::add(T data) {

@@ -41,19 +41,31 @@ public:
 	}
 
 	Stack(const Stack<T>& other) {
-		this->stack = new LinkedList<T>();
-		if (other.stack) {
-			ListNode<T>* node = other.stack->getFirst();
-			while (node) {
-				this->stack->add(node->data);
-				node = node->next;
-			}
-		}
+		this->stack = other.stack->clone();
+		std::cout << "Stack copied" << std::endl;
 	}
 
-	Stack(Stack<T>&& other) {
+	Stack(Stack<T>&& other) noexcept {
 		this->stack = other.stack;
 		other.stack = NULL;
+		std::cout << "Stack moved" << std::endl;
+	}
+
+	Stack<T>& operator =(const Stack<T>& other) {
+		if (this == &other) return *this;
+		delete this->stack;
+		this->stack = other.stack->clone();
+		std::cout << "Stack copied = " << std::endl;
+		return *this;
+	}
+
+	Stack<T>& operator =(Stack<T>&& other) noexcept {
+		if (this == &other) return *this;
+		delete this->stack;
+		this->stack = other.stack;
+		other.stack = NULL;
+		std::cout << "Stack moved = " << std::endl;
+		return *this;
 	}
 
 	~Stack() {

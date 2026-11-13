@@ -5,6 +5,29 @@
 #include <iostream>
 
 void stack_hw() {
+	Stack<int> s1;
+	s1.push(10);
+	s1.push(20);
+	s1.push(30);
+	std::cout << "s1: " << s1.pop() << std::endl;
+	Stack<int> s2 = s1;
+	std::cout << "s2: " << s2.top() << std::endl;
+	Stack<int> s3;
+	s3.push(0);
+	s1.push(40);
+	s3 = s1;
+	s1.push(50);
+	std::cout << "s3: " << s3.top() << std::endl;
+
+	Stack<int> s4 = std::move(s2);
+	std::cout << "s4: " << s4.top() << std::endl;
+
+	Stack<int> s5;
+	s5 = std::move(s3);
+	std::cout << "s5: " << s5.top() << std::endl;
+}
+
+void stack_hw_ð() {
 	//({x-y-z} * [x + 2y] - (z + 4x)) - No errors
 	//([x-y-z} * [x + 2y) - {z + 4x)] - Open-Close
 	//x * y - z} - No open

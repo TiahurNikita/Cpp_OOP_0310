@@ -51,7 +51,7 @@ int main() {
 	//basics();
 	//autos_basic();
 	//vector_task();
-	// data_structures();
+	//data_structures();
 	stack_hw();
 	return 0;
 }
