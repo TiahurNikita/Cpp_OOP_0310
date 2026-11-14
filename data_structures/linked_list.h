@@ -159,7 +159,7 @@ void LinkedList<T>::print() const {
 	if (node == NULL) {
 		std::cout << "Empty list, size = " << size << std::endl;
 	}
-	std::cout << size << " element(s) ";
+	std::cout << size << " element(s) " << std::endl;
 	while (node) {
 		std::cout << node->data << " ";
 		node = node->next;

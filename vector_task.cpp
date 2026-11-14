@@ -1,7 +1,18 @@
 #include "vector_task.h"
 #include "vector2.h"
+#include "data_structures/linked_list.h"
 
 void vector_task() {
+	std::unique_ptr<LinkedList<Vector2_t<double>*>> vectors =
+		std::make_unique<LinkedList<Vector2_t<double>*>>();
+	vectors->add(new Vector2_t<double>(1.23, 23.54, new char[2]{"1"}));
+	vectors->add(new Vector2_t<double>());
+	vectors->add(new Vector2_t<double>(-9.26, -5.12));
+	vectors->add(new Vector2_t<double>(5.6));
+	vectors->print();
+}
+
+void vector_task_1() {
 	Vector2_t<int> vec1(100);
 	Vector2_t<float>* vec2 = new Vector2_t<float>;
 

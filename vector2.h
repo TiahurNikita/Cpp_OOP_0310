@@ -21,6 +21,13 @@ public:
 	char* get_name() const { return name; }
 	void set_name(char* name) { this->name = name; }
 
+	void clear_name() {
+		if (name != NULL) {
+			delete[] name;
+			name = NULL;
+		}
+	}
+
 	std::string to_string() const;
 
 	Vector2_t();
@@ -51,7 +58,20 @@ public:
 
 	Vector2_t<T> operator *(T n) const;
 	Vector2_t<T> operator /(T n) const;
+
 };
+
+template<typename T>
+std::ostream& operator <<(std::ostream& out, const Vector2_t<T>* v) {
+	out << v->to_string();
+	return out;
+}
+
+template<typename T>
+std::ostream& operator <<(std::ostream& out, const Vector2_t<T>& v) {
+	out << v.to_string();
+	return out;
+}
 
 template<typename T>
 Vector2_t<T>::Vector2_t() {
@@ -93,6 +113,8 @@ template<typename T>
 Vector2_t<T>::Vector2_t(Vector2_t<T>&& other) noexcept {
 	this->x = other.x;
 	this->y = other.y;
+	other.x = T(0);
+	other.y = T(0);
 	this->name = other.name;
 	other.name = NULL;
 	std::cout << "Move constructor: take from " << (void*)this->name << std::endl;
@@ -100,9 +122,7 @@ Vector2_t<T>::Vector2_t(Vector2_t<T>&& other) noexcept {
 
 template<typename T>
 Vector2_t<T>::~Vector2_t() {
-	if (name != NULL) {
-		delete[] name;
-	}
+	clear_name();
 }
 
 template<typename T>
@@ -140,6 +160,8 @@ Vector2_t<T> Vector2_t<T>::operator -(const Vector2_t<T>& other) const {
 
 template<typename T>
 Vector2_t<T>& Vector2_t<T>::operator =(const Vector2_t<T>& other) {
+	if (this == &other) return *this;
+	this->clear_name();
 	this->x = other.x;
 	this->y = other.y;
 
@@ -158,8 +180,12 @@ Vector2_t<T>& Vector2_t<T>::operator =(const Vector2_t<T>& other) {
 
 template<typename T>
 Vector2_t<T>& Vector2_t<T>::operator =(Vector2_t<T>&& other) noexcept {
+	if (this == &other) return *this;
+	this->clear_name();
 	this->x = other.x;
 	this->y = other.y;
+	other.x = T(0);
+	other.y = T(0);
 	this->name = other.name;
 	other.name = NULL;
 	std::cout << "Move assigment: take from " << (void*)this->name << std::endl;
@@ -175,12 +201,6 @@ Vector2_t<T> Vector2_t<T>::operator -() const {
 		strcpy(new_name + 1, this->name);
 	}
 	return Vector2_t<T>(-this->x, -this->y, new_name);
-}
-
-template<typename T>
-std::ostream& operator <<(std::ostream& out, const Vector2_t<T>& v) {
-	out << v.to_string();
-	return out;
 }
 
 template<typename T>

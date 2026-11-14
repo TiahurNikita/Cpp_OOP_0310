@@ -50,8 +50,10 @@ int main() {
 	delete vec6;*/
 	//basics();
 	//autos_basic();
-	//vector_task();
+	vector_task();
 	//data_structures();
-	stack_hw();
+
+	//stack_hw();
+
 	return 0;
 }
