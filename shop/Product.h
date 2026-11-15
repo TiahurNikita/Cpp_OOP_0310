@@ -22,3 +22,5 @@ public:
 	Product(Product&& other) noexcept : name{ other.name }, price{ other.price } {}
 	~Product() {}
 };
+
+std::ostream& operator << (std::ostream& out, const Product* p);

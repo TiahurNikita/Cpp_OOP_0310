@@ -3,13 +3,30 @@
 #include "data_structures/linked_list.h"
 
 void vector_task() {
-	std::unique_ptr<LinkedList<Vector2_t<double>*>> vectors =
-		std::make_unique<LinkedList<Vector2_t<double>*>>();
-	vectors->add(new Vector2_t<double>(1.23, 23.54, new char[2]{"1"}));
-	vectors->add(new Vector2_t<double>());
-	vectors->add(new Vector2_t<double>(-9.26, -5.12));
-	vectors->add(new Vector2_t<double>(5.6));
-	vectors->print();
+	LinkedList<Vector2_t<double>*> vectors;
+	//std::unique_ptr<LinkedList<Vector2_t<double>*>> vectors =
+	//	std::make_unique<LinkedList<Vector2_t<double>*>>();
+	size_t N = 0;
+	vectors.add(new Vector2_t<double>(1.23, 23.54, new char[2]{"1"}));
+	N++;
+	vectors.add(new Vector2_t<double>());
+	N++;
+	vectors.add(new Vector2_t<double>(-9.26, -5.12));
+	N++;
+	vectors.add(new Vector2_t<double>(5.6));
+	N++;
+	for (size_t i = 0; i < N; ++i) {
+		Vector2_t<double>& v = *vectors[i];
+		std::cout << i+1 << ": (x:" << v[0] << " y:" << v[1] << ")" << std::endl;
+	}
+
+	try {
+		std::cout << (*vectors[0])[2] << std::endl;
+	}
+	catch (const std::range_error& ex) {
+		std::cout << "Exception: " << ex.what() << std::endl;
+	}
+	//vectors.print();
 }
 
 void vector_task_1() {

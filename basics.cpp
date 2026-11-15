@@ -1,5 +1,6 @@
-#include <iostream>
 #include "basics.h"
+#include <iostream>
+#include <conio.h>
 
 void basics() {
 	std::cout << "OOP Basics" << std::endl;
@@ -15,23 +16,168 @@ void basics() {
 	//LinkedList<std::unique_ptr<Product>> stock;		  // Перелік розумних покажчиків
 	// невдалий варіант - як збільшення пам'яті, так і непотрібні розумні покажчики
 
-	std::unique_ptr<LinkedList<Product*>> stock =
-		std::make_unique<LinkedList<Product*>>();	  // Розумний покажчик на перелік
+	//std::unique_ptr<LinkedList<Product*>> stock =
+	//	std::make_unique<LinkedList<Product*>>();	  // Розумний покажчик на перелік
 	// оптимальний варіант - покажчик всередині розумного покажчика та
 	// автоматичне видалення після роботи
-	//LinkedList<Product*>* stock = new LinkedList<Product*>();
-	stock->add((new Laptop())
+	LinkedList<Product*> stock; // = new LinkedList<Product*>();
+	int N = 0;
+
+	stock.add((new Laptop())
 		->setHardware("Intel Core 5, RAM 16GB, SSD 512GB")
 		->setPower(90)
 		->setName("Acer Nitro")
 		->setPrice(60499));
-
-	stock->add((new Monitor())
+	N++;
+	stock.add((new Laptop())
+		->setHardware("Intel Core 9, RAM 32GB, SSD 1024GB")
+		->setPower(90)
+		->setName("Acer Nitro")
+		->setPrice(60499));
+	N++;
+	stock.add((new Monitor())
 		->setDiagonal(32)
 		->setPower(120)
 		->setName("Dell Vision")
-		->setPrice(7950));
-	stock->print();
+		->setPrice(5000));
+	N++;
+	stock.add((new Monitor())
+		->setDiagonal(27)
+		->setPower(90)
+		->setName("ASUS")
+		->setPrice(9000));
+	N++;
+	stock.add((new Mouse())
+		->setDPI(1600)
+		->setConnection("USB")
+		->setName("Logitech G Pro")
+		->setPrice(6000));
+	N++;
+	stock.add((new Mouse())
+		->setDPI(1600)
+		->setConnection("USB-C")
+		->setName("Logitech G Lite")
+		->setPrice(8000));
+	N++;
+	stock.add((new Keyboard())
+		->setType("Magnetic")
+		->setConnection("2.4 GHz")
+		->setName("Logitech G")
+		->setPrice(7500));
+	N++;
+	stock.add((new Keyboard())
+		->setType("Mechanical")
+		->setConnection("2.4 GHz")
+		->setName("ASUS")
+		->setPrice(6700));
+	N++;
+
+	// Задача: реалізувати меню користувача
+	
+	int choice;
+	do{
+		std::cout << std::endl << "=== MAIN MENU ===" << std::endl;
+		std::cout << "Stock has " << N << " products. Select an action:" << std::endl
+			<< "1.Show all" << std::endl
+			<< "2.Find by name" << std::endl
+			<< "3.Find by price" << std::endl
+			<< "4.Show all from cheap to expensive" << std::endl
+			<< "5.Show all from expensive to cheap" << std::endl
+			<< "0.Exit" << std::endl << std::endl;
+		choice = _getch();
+		bool swapped;
+		if (choice == 0 || choice == 224) choice = _getch();
+		switch (choice) {
+			case '0': break;
+			case '1': 
+				for (int i = 0; i < N; ++i) {
+					std::cout << stock[i] << std::endl;
+				}
+				break;
+			case '3':
+				bool found;
+				double max, min, t, max_a, min_a;
+				size_t counter;
+				if (N <= 0) { 
+					std::cout << "Empty stock. Nothing to search" << std::endl;
+					break; 
+				}
+				max_a = min_a = stock[0]->getPrice();
+				for (size_t i = 1; i < N; ++i) {
+					double p = stock[i]->getPrice();
+					if (p < min_a) min_a = p;
+					if (p > max_a) max_a = p;
+				}
+				std::cout << "Price from (min:"<< min_a <<"): " << std::endl; std::cin >> min;
+				std::cout << "Price to (max:"<< max_a <<"): " << std::endl; std::cin >> max;
+				if (min < 0) min = 0;
+				if (max < 0) max = 0;
+				if (min > max) {
+					std::cout << "You were probably looking for products in range " << min << " - " << max << " hrn" << std::endl;
+					t = max;
+					max = min;
+					min = max;
+				}
+				else{
+				std::cout << "Searching in range " << min << " - " << max << " hrn" << std::endl;
+				}
+				counter = 0;
+				
+				for (size_t i = 0; i < N; ++i) {
+					double p = stock[i]->getPrice();
+					if(p>=min && p<=max){
+						counter += 1;
+						std::cout << counter << ": " << stock[i] << std::endl;
+					}
+				}
+				if (counter>0) {
+					std::cout << "Found " << counter << " product(s)" << std::endl;
+				}
+				else{
+					std::cout << "No product found in this price range" << std::endl;
+				}
+				break;
+			case '4':
+				if (N <= 0) {
+					std::cout << "Empty stock. Nothing to sort" << std::endl;
+					break;
+				}
+				do {
+					swapped = false;
+					for (int i = 0; i < N-1; ++i) {
+						if (stock[i]->getPrice() > stock[i+1]->getPrice()) {
+							std::swap(stock[i], stock[i+1]);
+							swapped = true;
+						}
+					}
+				} while (swapped);
+				for (int i = 0; i < N; ++i) {
+					std::cout << stock[i] << std::endl;
+				}
+				break;
+			case '5':
+				if (N <= 0) {
+					std::cout << "Empty stock. Nothing to sort" << std::endl;
+					break;
+				}
+				do {
+					swapped = false;
+					for (int i = 0; i < N-1; ++i) {
+						if (stock[i]->getPrice() < stock[i+1]->getPrice()) {
+							std::swap(stock[i], stock[i+1]);
+							swapped = true;
+						}
+					}
+				} while (swapped);
+				for (int i = 0; i < N; ++i) {
+					std::cout << stock[i] << std::endl;
+				}
+				break;
+			default: std::cout << "Wrong choice" << std::endl;
+		}
+
+	}while (choice != '0');
+	
 }
 
 /*void basics_2() {

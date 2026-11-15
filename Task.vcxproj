@@ -139,8 +139,11 @@
     <ClCompile Include="rental\Standard.cpp" />
     <ClCompile Include="rental\Suv.cpp" />
     <ClCompile Include="shop\Electrical.cpp" />
+    <ClCompile Include="shop\Keyboard.cpp" />
     <ClCompile Include="shop\Laptop.cpp" />
     <ClCompile Include="shop\Monitor.cpp" />
+    <ClCompile Include="shop\Mouse.cpp" />
+    <ClCompile Include="shop\Periphery.cpp" />
     <ClCompile Include="shop\Product.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="vector2.cpp" />
@@ -167,8 +170,10 @@
     <ClInclude Include="rental\Standard.h" />
     <ClInclude Include="rental\Suv.h" />
     <ClInclude Include="shop\Electrical.h" />
+    <ClInclude Include="shop\Keyboard.h" />
     <ClInclude Include="shop\Laptop.h" />
     <ClInclude Include="shop\Monitor.h" />
+    <ClInclude Include="shop\Mouse.h" />
     <ClInclude Include="shop\Periphery.h" />
     <ClInclude Include="shop\Product.h" />
     <ClInclude Include="vector2.h" />

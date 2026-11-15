@@ -12,7 +12,7 @@ Monitor* Monitor::setDiagonal(double diagonal) {
 
 std::string Monitor::toString() const {
 	return std::format(
-		"{} {}'' {} hrn ({} W)",
+		"Monitor: {} {}'' {} hrn ({} W)",
 		getName(),
 		diagonal,
 		getPrice(),

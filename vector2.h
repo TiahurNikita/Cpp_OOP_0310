@@ -6,6 +6,7 @@
 #include <iostream>
 #include <format>
 #include <cstring>
+#include <stdexcept>
 
 template<typename T>
 class Vector2_t {
@@ -58,6 +59,26 @@ public:
 
 	Vector2_t<T> operator *(T n) const;
 	Vector2_t<T> operator /(T n) const;
+
+	T& operator[](size_t index) {
+		if (index == 0) return x;
+		else if (index == 1) return y;
+		else {
+			throw std::range_error(
+				std::format("Vector2_t<T>::operator[]: Unable to find element. Max list index 1 but got {}", index)
+			);
+		}
+	}
+
+	const T& operator[](size_t index) const{
+		if (index == 0) return x;
+		else if (index == 1) return y;
+		else {
+			throw std::range_error(
+				std::format("Vector2_t<T>::operator[]: Unable to find element. Max list index 1 but got {}", index)
+			);
+		}
+	}
 
 };
 
