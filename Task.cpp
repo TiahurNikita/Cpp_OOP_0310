@@ -48,9 +48,9 @@ int main() {
 	delete vec2;
 	delete vec4;
 	delete vec6;*/
-	//basics();
+	basics();
 	//autos_basic();
-	vector_task();
+	//vector_task();
 	//data_structures();
 
 	//stack_hw();

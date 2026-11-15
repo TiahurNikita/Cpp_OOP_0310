@@ -1,6 +1,7 @@
 #include "basics.h"
 #include <iostream>
 #include <conio.h>
+#include <string>
 
 void basics() {
 	std::cout << "OOP Basics" << std::endl;
@@ -86,6 +87,8 @@ void basics() {
 			<< "0.Exit" << std::endl << std::endl;
 		choice = _getch();
 		bool swapped;
+		size_t counter, len;
+		std::string search, line;
 		if (choice == 0 || choice == 224) choice = _getch();
 		switch (choice) {
 			case '0': break;
@@ -94,10 +97,40 @@ void basics() {
 					std::cout << stock[i] << std::endl;
 				}
 				break;
+			case '2':
+				if (N <= 0) {
+					std::cout << "Empty stock. Nothing to search" << std::endl;
+					break;
+				}
+				std::cout << "Enter product name (3-40 symbols): ";
+				std::getline(std::cin, search);
+				len = search.length();
+				if (len < 3 || len>40) {
+					std::cout << "Please enter string of appropriate size (3-40 symb), got: " << len << " symb" << std::endl;
+					break;
+				}
+				counter = 0;
+				for (char& c : search) c = tolower(c);
+				for (size_t i = 0; i < N; ++i) {
+					line = stock[i]->getName();
+					for (char& c : line) c = tolower(c);
+					if (line.find(search) != std::string::npos) {
+						counter += 1;
+						std::cout << counter << ": " << stock[i] << std::endl;
+					}
+				}
+				if (counter > 0) {
+					std::cout << "Found " << counter << " product(s)" << std::endl;
+				}
+				else {
+					std::cout << "No product found by \"" << search << "\"" << std::endl;
+				}
+				counter = 0;
+				break;
 			case '3':
+			{
 				bool found;
 				double max, min, t, max_a, min_a;
-				size_t counter;
 				if (N <= 0) { 
 					std::cout << "Empty stock. Nothing to search" << std::endl;
 					break; 
@@ -110,13 +143,14 @@ void basics() {
 				}
 				std::cout << "Price from (min:"<< min_a <<"): " << std::endl; std::cin >> min;
 				std::cout << "Price to (max:"<< max_a <<"): " << std::endl; std::cin >> max;
+				std::cin.get();
 				if (min < 0) min = 0;
 				if (max < 0) max = 0;
 				if (min > max) {
 					std::cout << "You were probably looking for products in range " << min << " - " << max << " hrn" << std::endl;
 					t = max;
 					max = min;
-					min = max;
+					min = t;
 				}
 				else{
 				std::cout << "Searching in range " << min << " - " << max << " hrn" << std::endl;
@@ -137,6 +171,7 @@ void basics() {
 					std::cout << "No product found in this price range" << std::endl;
 				}
 				break;
+			}
 			case '4':
 				if (N <= 0) {
 					std::cout << "Empty stock. Nothing to sort" << std::endl;
